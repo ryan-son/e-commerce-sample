@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainPageView: View {
   @State var currentTab: Tab = .home
+  @StateObject var sharedDataViewModel: SharedDataViewModel = SharedDataViewModel()
+  @Namespace var animation
   
   init() {
     UITabBar.appearance().isHidden = true
@@ -17,16 +19,19 @@ struct MainPageView: View {
   var body: some View {
     VStack(spacing: 0) {
       TabView(selection: $currentTab) {
-        HomeView()
+        HomeView(animation: animation)
+          .environmentObject(sharedDataViewModel)
           .tag(Tab.home)
         
-        Text("Liked")
+        LikedView()
+          .environmentObject(sharedDataViewModel)
           .tag(Tab.liked)
         
         ProfileView()
           .tag(Tab.profile)
         
-        Text("Cart")
+        CartView()
+          .environmentObject(sharedDataViewModel)
           .tag(Tab.cart)
       }
       
@@ -59,6 +64,16 @@ struct MainPageView: View {
       .padding(.bottom, 10)
     }
     .background(Color(uiColor: .systemGray5))
+    .overlay(
+      ZStack {
+        if let product = sharedDataViewModel.detailProduct,
+           sharedDataViewModel.showDetailProduct {
+          ProductDetailView(product: product, animation: animation)
+            .environmentObject(sharedDataViewModel)
+            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .opacity))
+        }
+      }
+    )
   }
 }
 
@@ -70,7 +85,7 @@ struct MainPageView_Previews: PreviewProvider {
 
 enum Tab: String, CaseIterable {
   case home = "house.fill"
-  case liked = "hand.thumbsup.fill"
+  case liked = "heart.fill"
   case profile = "person.crop.circle.fill"
   case cart = "cart.fill"
 }

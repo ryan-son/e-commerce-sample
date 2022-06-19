@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct SearchView: View {
-  var animation: Namespace.ID
   @EnvironmentObject var homeViewModel: HomeViewModel
-  
+  @EnvironmentObject var sharedDataViewModel: SharedDataViewModel
   @FocusState var startTextField: Bool
+
+  var animation: Namespace.ID
   
   var body: some View {
     VStack(spacing: 0) {
@@ -21,6 +22,7 @@ struct SearchView: View {
             homeViewModel.searchActivated = false
           }
           homeViewModel.searchText = ""
+          sharedDataViewModel.fromSearchPage = false
         }) {
           Image(systemName: "arrow.left")
             .font(.title2)
@@ -118,12 +120,23 @@ struct SearchView: View {
   @ViewBuilder
   func productCardView(product: Product) -> some View {
     VStack(spacing: 10) {
-      Image(product.productImage)
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(width: screenRect.width / 3, height: screenRect.width / 3)
-        .offset(y: -80)
-        .padding(.bottom, -80)
+      ZStack {
+        if sharedDataViewModel.showDetailProduct {
+          Image(product.productImage)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: screenRect.width / 3, height: screenRect.width / 3)
+            .opacity(0)
+        } else {
+          Image(product.productImage)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: screenRect.width / 3, height: screenRect.width / 3)
+            .matchedGeometryEffect(id: "\(product.id)SEARCH", in: animation)
+        }
+      }
+      .offset(y: -80)
+      .padding(.bottom, -80)
       
       Text(product.title)
         .font(.system(size: 18))
@@ -145,11 +158,18 @@ struct SearchView: View {
       Color.white
         .cornerRadius(25)
     )
+    .onTapGesture {
+      withAnimation(.easeInOut) {
+        sharedDataViewModel.fromSearchPage = true
+        sharedDataViewModel.detailProduct = product
+        sharedDataViewModel.showDetailProduct = true
+      }
+    }
   }
 }
 
 struct SearchView_Previews: PreviewProvider {
   static var previews: some View {
-    HomeView()
+    MainPageView()
   }
 }
