@@ -12,6 +12,10 @@
 		AA538241285EEF9200EA1C15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA538240285EEF9200EA1C15 /* Assets.xcassets */; };
 		AA538244285EEF9200EA1C15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA538243285EEF9200EA1C15 /* Preview Assets.xcassets */; };
 		AA53824E285EEF9200EA1C15 /* ECommnerceSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA53824D285EEF9200EA1C15 /* ECommnerceSampleTests.swift */; };
+		AA538276285EF81D00EA1C15 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA538275285EF81D00EA1C15 /* OnboardingPageView.swift */; };
+		AA538278285EF89900EA1C15 /* LoginPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA538277285EF89900EA1C15 /* LoginPageViewModel.swift */; };
+		AA53827A285EF91200EA1C15 /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA538279285EF91200EA1C15 /* LoginPageView.swift */; };
+		AA53827C285EFA0600EA1C15 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA53827B285EFA0600EA1C15 /* CustomCorners.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,11 @@
 		AA538243285EEF9200EA1C15 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AA538249285EEF9200EA1C15 /* ECommnerceSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ECommnerceSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA53824D285EEF9200EA1C15 /* ECommnerceSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECommnerceSampleTests.swift; sourceTree = "<group>"; };
+		AA53826C285EF2D100EA1C15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AA538275285EF81D00EA1C15 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		AA538277285EF89900EA1C15 /* LoginPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewModel.swift; sourceTree = "<group>"; };
+		AA538279285EF91200EA1C15 /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
+		AA53827B285EFA0600EA1C15 /* CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +82,12 @@
 		AA53823B285EEF9100EA1C15 /* ECommnerceSample */ = {
 			isa = PBXGroup;
 			children = (
+				AA538274285EF7F300EA1C15 /* ViewModel */,
+				AA538273285EF7EB00EA1C15 /* View */,
+				AA53826C285EF2D100EA1C15 /* Info.plist */,
+				AA538267285EF23100EA1C15 /* Resources */,
 				AA53823C285EEF9100EA1C15 /* ECommnerceSampleApp.swift */,
 				AA53823E285EEF9100EA1C15 /* ContentView.swift */,
-				AA538240285EEF9200EA1C15 /* Assets.xcassets */,
 				AA538242285EEF9200EA1C15 /* Preview Content */,
 			);
 			path = ECommnerceSample;
@@ -95,6 +107,32 @@
 				AA53824D285EEF9200EA1C15 /* ECommnerceSampleTests.swift */,
 			);
 			path = ECommnerceSampleTests;
+			sourceTree = "<group>";
+		};
+		AA538267285EF23100EA1C15 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA538240285EEF9200EA1C15 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AA538273285EF7EB00EA1C15 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA538275285EF81D00EA1C15 /* OnboardingPageView.swift */,
+				AA538279285EF91200EA1C15 /* LoginPageView.swift */,
+				AA53827B285EFA0600EA1C15 /* CustomCorners.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AA538274285EF7F300EA1C15 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA538277285EF89900EA1C15 /* LoginPageViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +235,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA538276285EF81D00EA1C15 /* OnboardingPageView.swift in Sources */,
+				AA53827C285EFA0600EA1C15 /* CustomCorners.swift in Sources */,
+				AA538278285EF89900EA1C15 /* LoginPageViewModel.swift in Sources */,
 				AA53823F285EEF9100EA1C15 /* ContentView.swift in Sources */,
+				AA53827A285EF91200EA1C15 /* LoginPageView.swift in Sources */,
 				AA53823D285EEF9100EA1C15 /* ECommnerceSampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +388,7 @@
 				DEVELOPMENT_TEAM = V5CFURAVD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ECommnerceSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -375,6 +418,7 @@
 				DEVELOPMENT_TEAM = V5CFURAVD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ECommnerceSample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
