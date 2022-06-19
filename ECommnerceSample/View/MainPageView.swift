@@ -23,7 +23,7 @@ struct MainPageView: View {
         Text("Liked")
           .tag(Tab.liked)
         
-        Text("Profile")
+        ProfileView()
           .tag(Tab.profile)
         
         Text("Cart")

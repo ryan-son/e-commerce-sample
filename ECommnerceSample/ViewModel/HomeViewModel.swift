@@ -5,6 +5,7 @@
 //  Created by Geonhee on 2022/06/19.
 //
 
+import Combine
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
@@ -28,8 +29,24 @@ class HomeViewModel: ObservableObject {
   
   @Published var filteredProducts: [Product] = []
   
+  @Published var searchText: String = ""
+  @Published var searchActivated: Bool = false
+  @Published var searchedProducts: [Product]?
+  
+  var searchCancellable: AnyCancellable?
+  
   init() {
     filterProductByType()
+    
+    searchCancellable = $searchText.removeDuplicates()
+      .debounce(for: 0.5, scheduler: RunLoop.main)
+      .sink(receiveValue: { text in
+        guard !text.isEmpty else {
+          self.searchedProducts = nil
+          return
+        }
+        self.filterProductBySearch()
+      })
   }
   
   func filterProductByType() {
@@ -43,6 +60,20 @@ class HomeViewModel: ObservableObject {
       
       DispatchQueue.main.async {
         self.filteredProducts = results.compactMap { $0 }
+      }
+    }
+  }
+  
+  func filterProductBySearch() {
+    DispatchQueue.global(qos: .userInteractive).async {
+      let results = self.products
+        .lazy
+        .filter { product in
+          return product.title.lowercased().contains(self.searchText.lowercased())
+        }
+      
+      DispatchQueue.main.async {
+        self.searchedProducts = results.compactMap { $0 }
       }
     }
   }

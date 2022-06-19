@@ -14,22 +14,21 @@ struct HomeView: View {
   var body: some View {
     ScrollView(.vertical, showsIndicators: false) {
       VStack(spacing: 15) {
-        HStack(spacing: 15) {
-          Image(systemName: "magnifyingglass")
-            .font(.title2)
-            .foregroundColor(.gray)
-          
-          TextField("Search", text: .constant(""))
-            .disabled(true)
+        ZStack {
+          if viewModel.searchActivated {
+            searchBar()
+          } else {
+            searchBar()
+              .matchedGeometryEffect(id: "SEARCHBAR", in: animation)
+          }
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal)
-        .background(
-          Capsule()
-            .strokeBorder(Color.gray, lineWidth: 0.8)
-          
-        )
         .frame(width: screenRect.width / 1.6)
+        .contentShape(Rectangle())
+        .onTapGesture {
+          withAnimation(.easeInOut) {
+            viewModel.searchActivated = true
+          }
+        }
         
         Text("Order online\ncollect in store")
           .font(.system(size: 28))
@@ -87,6 +86,14 @@ struct HomeView: View {
     .sheet(isPresented: $viewModel.showMoreProductsOnType) {
       MoreProductsView()
     }
+    .overlay(
+      ZStack {
+        if viewModel.searchActivated {
+          SearchView(animation: animation)
+            .environmentObject(viewModel)
+        }
+      }
+    )
   }
   
   @ViewBuilder
@@ -150,6 +157,24 @@ struct HomeView: View {
     .background(
       Color.white
         .cornerRadius(25)
+    )
+  }
+  
+  @ViewBuilder
+  func searchBar() -> some View {
+    HStack(spacing: 15) {
+      Image(systemName: "magnifyingglass")
+        .font(.title2)
+        .foregroundColor(.gray)
+      
+      TextField("Search", text: .constant(""))
+        .disabled(true)
+    }
+    .padding(.vertical, 12)
+    .padding(.horizontal)
+    .background(
+      Capsule()
+        .strokeBorder(Color.gray, lineWidth: 0.8)
     )
   }
 }
