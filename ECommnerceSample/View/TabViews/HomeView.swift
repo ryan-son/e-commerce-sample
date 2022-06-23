@@ -11,7 +11,7 @@ struct HomeView: View {
   @EnvironmentObject var sharedDataViewModel: SharedDataViewModel
   @StateObject var viewModel: HomeViewModel = HomeViewModel()
   var animation: Namespace.ID
-  
+
   var body: some View {
     ScrollView(.vertical, showsIndicators: false) {
       VStack(spacing: 15) {
@@ -47,7 +47,7 @@ struct HomeView: View {
           .padding(.horizontal, 25)
         }
         .padding(.top, 28)
-        
+
         ScrollView(.horizontal, showsIndicators: false) {
           HStack(spacing: 25) {
             ForEach(viewModel.filteredProducts) { product in
@@ -59,7 +59,7 @@ struct HomeView: View {
           .padding(.top, 80)
         }
         .padding(.top, 30)
-        
+
         Button(action: { viewModel.showMoreProductsOnType.toggle() }) {
           Label(
             title: {
@@ -74,7 +74,6 @@ struct HomeView: View {
           .padding(.top, 10)
           .font(.system(size: 15).bold())
           .foregroundColor(Color(uiColor: .systemIndigo))
-          
         }
       }
       .padding(.vertical)
@@ -151,15 +150,15 @@ struct HomeView: View {
         .frame(width: screenRect.width / 2.5, height: screenRect.width / 2.5)
         .offset(y: -80)
         .padding(.bottom, -80)
-      
+
       Text(product.title)
         .font(.system(size: 18))
         .fontWeight(.semibold)
         .padding(.top)
-      
+
       Text(product.subtitle)
         .font(.system(size: 14))
-      
+
       Text(product.price)
         .font(.system(size: 16))
         .fontWeight(.semibold)
@@ -186,7 +185,7 @@ struct HomeView: View {
       Image(systemName: "magnifyingglass")
         .font(.title2)
         .foregroundColor(.gray)
-      
+
       TextField("Search", text: .constant(""))
         .disabled(true)
     }

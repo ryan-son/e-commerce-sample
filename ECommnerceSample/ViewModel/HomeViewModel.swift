@@ -10,7 +10,6 @@ import SwiftUI
 
 class HomeViewModel: ObservableObject {
   @Published var productType: ProductType = .wearable
-  
   @Published var products: [Product] = [
     Product(type: .wearable, title: "Apple Watch", subtitle: "Series 5", price: "$259", productImage: "AppleWatch5"),
     Product(type: .wearable, title: "Apple Watch", subtitle: "Series 6", price: "$359", productImage: "AppleWatch6"),
@@ -26,15 +25,15 @@ class HomeViewModel: ObservableObject {
   ]
   
   @Published var showMoreProductsOnType: Bool = false
-  
+
   @Published var filteredProducts: [Product] = []
-  
+
   @Published var searchText: String = ""
   @Published var searchActivated: Bool = false
   @Published var searchedProducts: [Product]?
-  
+
   var searchCancellable: AnyCancellable?
-  
+
   init() {
     filterProductByType()
     
@@ -48,7 +47,7 @@ class HomeViewModel: ObservableObject {
         self.filterProductBySearch()
       })
   }
-  
+
   func filterProductByType() {
     DispatchQueue.global(qos: .userInteractive).async {
       let results = self.products
@@ -63,7 +62,7 @@ class HomeViewModel: ObservableObject {
       }
     }
   }
-  
+
   func filterProductBySearch() {
     DispatchQueue.global(qos: .userInteractive).async {
       let results = self.products
@@ -71,7 +70,7 @@ class HomeViewModel: ObservableObject {
         .filter { product in
           return product.title.lowercased().contains(self.searchText.lowercased())
         }
-      
+
       DispatchQueue.main.async {
         self.searchedProducts = results.compactMap { $0 }
       }

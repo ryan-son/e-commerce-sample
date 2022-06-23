@@ -9,9 +9,9 @@ import SwiftUI
 
 struct CartView: View {
   @EnvironmentObject var sharedDataViewModel: SharedDataViewModel
-  
+
   @State var showDeleteOption: Bool = false
-  
+
   var body: some View {
     NavigationView {
       VStack(spacing: 10) {
@@ -20,9 +20,9 @@ struct CartView: View {
             HStack {
               Text("Basket")
                 .font(.system(size: 28).bold())
-              
+
               Spacer()
-              
+
               Button(action: {
                 withAnimation {
                   showDeleteOption.toggle()
@@ -36,7 +36,7 @@ struct CartView: View {
               }
               .opacity(sharedDataViewModel.cartProducts.isEmpty ? 0 : 1)
             }
-            
+
             if sharedDataViewModel.cartProducts.isEmpty {
               Group {
                 Image(systemName: "suitcase.cart")
@@ -45,11 +45,11 @@ struct CartView: View {
                   .frame(width: 100, height: 100)
                   .padding()
                   .padding(.top, 35)
-                
+
                 Text("No Items added")
                   .font(.system(size: 25))
                   .fontWeight(.semibold)
-                
+
                 Text("Hit the plus button to save into basket.")
                   .font(.system(size: 18))
                   .foregroundColor(.gray)
@@ -78,8 +78,7 @@ struct CartView: View {
           }
           .padding()
         }
-        
-        
+
         if !sharedDataViewModel.cartProducts.isEmpty {
           Group {
             HStack {
@@ -92,7 +91,7 @@ struct CartView: View {
                 .font(.system(size: 18))
                 .foregroundColor(Color(uiColor: .systemIndigo))
             }
-            
+
             Button(action: {}) {
               Text("Checkout")
                 .font(.system(size: 18))
@@ -141,22 +140,22 @@ struct CardView: View {
         .resizable()
         .aspectRatio(contentMode: .fit)
         .frame(width: 100, height: 100)
-      
+
       VStack(alignment: .leading, spacing: 8) {
         Text(product.title)
           .font(.system(size: 18).bold())
           .lineLimit(1)
-        
+
         Text(product.subtitle)
           .font(.system(size: 17))
           .fontWeight(.semibold)
           .foregroundColor(Color(uiColor: .systemIndigo))
-        
+
         HStack(spacing: 10) {
           Text("Quantity: ")
             .font(.system(size: 14))
             .foregroundColor(.gray)
-          
+
           Button(action: {
             product.quantity = (product.quantity > 0 ? (product.quantity - 1) : 0)
           }) {
@@ -167,12 +166,12 @@ struct CardView: View {
               .background(Color(uiColor: .systemPink))
               .cornerRadius(4)
           }
-          
+
           Text("\(product.quantity)")
             .font(.system(size: 14))
             .fontWeight(.semibold)
             .foregroundColor(.black)
-          
+
           Button(action: {
             product.quantity += 1
           }) {
@@ -184,7 +183,6 @@ struct CardView: View {
               .cornerRadius(4)
           }
         }
-        
       }
     }
     .padding(10)

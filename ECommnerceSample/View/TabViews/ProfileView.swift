@@ -16,7 +16,7 @@ struct ProfileView: View {
             .font(.system(size: 28))
             .fontWeight(.bold)
             .frame(maxWidth: .infinity, alignment: .leading)
-          
+
           VStack(spacing: 15) {
             Image("ryan-son-profile")
               .resizable()
@@ -25,16 +25,16 @@ struct ProfileView: View {
               .clipShape(Circle())
               .offset(y: -30)
               .padding(.bottom, -30)
-            
+
             Text("Ryan Son")
               .font(.system(size: 16))
               .fontWeight(.semibold)
-            
+
             HStack(alignment: .top, spacing: 10) {
               Image(systemName: "location.north.circle.fill")
                 .foregroundColor(.gray)
                 .rotationEffect(.init(degrees: 180))
-              
+
               Text("Address: 43 Oxford Road\nM13 4GR\nManchester, UK")
                 .font(.system(size: 15))
             }
@@ -54,28 +54,28 @@ struct ProfileView: View {
               .frame(maxWidth: .infinity, maxHeight: .infinity)
               .background(Color(uiColor: .systemGray5).ignoresSafeArea())
           }
-          
+
           customNavigationLink(title: "Shopping Address") {
             Text("")
               .navigationTitle("Shopping Address")
               .frame(maxWidth: .infinity, maxHeight: .infinity)
               .background(Color(uiColor: .systemGray5).ignoresSafeArea())
           }
-          
+
           customNavigationLink(title: "Order History") {
             Text("")
               .navigationTitle("Order History")
               .frame(maxWidth: .infinity, maxHeight: .infinity)
               .background(Color(uiColor: .systemGray5).ignoresSafeArea())
           }
-          
+
           customNavigationLink(title: "Cards") {
             Text("")
               .navigationTitle("Cards")
               .frame(maxWidth: .infinity, maxHeight: .infinity)
               .background(Color(uiColor: .systemGray5).ignoresSafeArea())
           }
-          
+
           customNavigationLink(title: "Notifications") {
             Text("")
               .navigationTitle("Notifications")
@@ -105,7 +105,7 @@ struct ProfileView: View {
         Text(title)
           .font(.system(size: 17))
           .fontWeight(.semibold)
-        
+
         Spacer()
         Image(systemName: "chevron.right")
       }

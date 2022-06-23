@@ -10,9 +10,9 @@ import SwiftUI
 
 struct LikedView: View {
   @EnvironmentObject var sharedDataViewModel: SharedDataViewModel
-  
+
   @State var showDeleteOption: Bool = false
-  
+
   var body: some View {
     NavigationView {
       ScrollView(.vertical, showsIndicators: false) {
@@ -20,9 +20,9 @@ struct LikedView: View {
           HStack {
             Text("Favourites")
               .font(.system(size: 28).bold())
-            
+
             Spacer()
-            
+
             Button(action: {
               withAnimation {
                 showDeleteOption.toggle()
@@ -45,11 +45,11 @@ struct LikedView: View {
                 .frame(width: 100, height: 100)
                 .padding()
                 .padding(.top, 35)
-              
+
               Text("No favourites yet")
                 .font(.system(size: 25))
                 .fontWeight(.semibold)
-              
+
               Text("Hit the like button on each product page to save favourite ones.")
                 .font(.system(size: 18))
                 .foregroundColor(.gray)
@@ -93,21 +93,20 @@ struct LikedView: View {
         .resizable()
         .aspectRatio(contentMode: .fit)
         .frame(width: 100, height: 100)
-      
+
       VStack(alignment: .leading, spacing: 8) {
         Text(product.title)
           .font(.system(size: 18).bold())
           .lineLimit(1)
-        
+
         Text(product.subtitle)
           .font(.system(size: 17))
           .fontWeight(.semibold)
           .foregroundColor(Color(uiColor: .systemIndigo))
-        
+
         Text("Type: \(product.type.rawValue)")
           .font(.system(size: 13))
-          .foregroundColor(.gray)
-        
+          .foregroundColor(.gray)        
       }
     }
     .padding(10)
