@@ -12,20 +12,20 @@ struct OnboardingPageView: View {
   
   var body: some View {
     VStack(alignment: .leading) {
-      
+
       Text("Find your\nGadget")
         .font(.system(size: 45))
         .fontWeight(.bold)
         .padding()
         .foregroundColor(.white)
-      
+
       Image(systemName: "swift")
         .resizable()
         .aspectRatio(contentMode: .fit)
         .foregroundColor(.orange)
         .padding()
         .padding(.bottom, 30)
-      
+
       Button(action: {
         withAnimation {
           showLoginPage = true
@@ -43,7 +43,7 @@ struct OnboardingPageView: View {
       }
       .padding(.horizontal, 30)
       .offset(y: screenRect.height < 750 ? 20 : 40)
-      
+
       Spacer()
     }
     .padding()

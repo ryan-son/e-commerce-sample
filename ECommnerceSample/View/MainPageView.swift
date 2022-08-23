@@ -11,30 +11,30 @@ struct MainPageView: View {
   @State var currentTab: Tab = .home
   @StateObject var sharedDataViewModel: SharedDataViewModel = SharedDataViewModel()
   @Namespace var animation
-  
+
   init() {
     UITabBar.appearance().isHidden = true
   }
-  
+
   var body: some View {
     VStack(spacing: 0) {
       TabView(selection: $currentTab) {
         HomeView(animation: animation)
           .environmentObject(sharedDataViewModel)
           .tag(Tab.home)
-        
+
         LikedView()
           .environmentObject(sharedDataViewModel)
           .tag(Tab.liked)
-        
+
         ProfileView()
           .tag(Tab.profile)
-        
+
         CartView()
           .environmentObject(sharedDataViewModel)
           .tag(Tab.cart)
       }
-      
+
       HStack(spacing: 0) {
         ForEach(Tab.allCases, id: \.self) { tab in
           Button(action: { currentTab = tab }) {

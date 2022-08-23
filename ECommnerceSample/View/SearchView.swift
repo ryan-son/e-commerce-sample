@@ -13,7 +13,7 @@ struct SearchView: View {
   @FocusState var startTextField: Bool
 
   var animation: Namespace.ID
-  
+
   var body: some View {
     VStack(spacing: 0) {
       HStack(spacing: 20) {
@@ -28,7 +28,7 @@ struct SearchView: View {
             .font(.title2)
             .foregroundColor(Color.black.opacity(0.7))
         }
-        
+
         HStack(spacing: 15) {
           Image(systemName: "magnifyingglass")
             .font(.title2)
@@ -58,11 +58,11 @@ struct SearchView: View {
               .aspectRatio(contentMode: .fit)
               .frame(width: 100, height: 100)
               .padding(.vertical, 60)
-            
+
             Text("Item Not Found")
               .font(.system(size: 22))
               .fontWeight(.bold)
-            
+
             Text("Try a more generic search term or try looking for alternative products.")
               .font(.system(size: 16))
               .fontWeight(.bold)
@@ -137,15 +137,15 @@ struct SearchView: View {
       }
       .offset(y: -80)
       .padding(.bottom, -80)
-      
+
       Text(product.title)
         .font(.system(size: 18))
         .fontWeight(.semibold)
         .padding(.top)
-      
+
       Text(product.subtitle)
         .font(.system(size: 14))
-      
+
       Text(product.price)
         .font(.system(size: 16))
         .fontWeight(.semibold)

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ProductDetailView: View {
   var product: Product
-  
+
   var animation: Namespace.ID
-  
+
   @EnvironmentObject var sharedDataViewModel: SharedDataViewModel
   @EnvironmentObject var homeViewModel: HomeViewModel
-  
+
   var body: some View {
     VStack {
       VStack {
@@ -28,9 +28,9 @@ struct ProductDetailView: View {
               .font(.title2)
               .foregroundColor(Color.black.opacity(0.7))
           }
-          
+
           Spacer()
-          
+
           Button(action: { addToLiked() }) {
             Image(systemName: "heart.fill")
               .renderingMode(.template)
@@ -45,7 +45,7 @@ struct ProductDetailView: View {
           }
         }
         .padding()
-        
+
         Image(product.productImage)
           .resizable()
           .aspectRatio(contentMode: .fit)
@@ -56,7 +56,6 @@ struct ProductDetailView: View {
           .padding(.horizontal)
           .offset(y: -12)
           .frame(maxHeight: .infinity)
-        
       }
       .frame(height: screenRect.height / 2.7)
       .zIndex(1)
@@ -66,21 +65,21 @@ struct ProductDetailView: View {
           Text(product.title)
             .font(.system(size: 20))
             .fontWeight(.bold)
-          
+
           Text(product.subtitle)
             .font(.system(size: 18))
             .fontWeight(.bold)
             .foregroundColor(.gray)
-          
+
           Text("Get Apple TV+ free for a year")
             .font(.system(size: 16))
             .fontWeight(.bold)
             .padding(.top)
-          
+
           Text("Available when you purchase any new iPhone, iPad, iPod Touch, Mac or Apple TV, ₩5,000 month after free trial.")
             .font(.system(size: 15))
             .foregroundColor(.gray)
-          
+
           Button(action: {}) {
             Label(
               title: {
@@ -93,19 +92,19 @@ struct ProductDetailView: View {
             .font(.system(size: 15).bold())
             .foregroundColor(Color(uiColor: .systemIndigo))
           }
-          
+
           HStack {
             Text("Total")
               .font(.system(size: 17))
-            
+
             Spacer()
-            
+
             Text("\(product.price)")
               .font(.system(size: 20).bold())
               .foregroundColor(Color(uiColor: .systemIndigo))
           }
           .padding(.vertical, 20)
-          
+
           Button(action: { addToCart() }) {
             Text("\(isAddedToCart() ? "added" : "add") to basket")
               .font(.system(size: 20).bold())
@@ -137,15 +136,15 @@ struct ProductDetailView: View {
     .animation(.easeInOut, value: sharedDataViewModel.cartProducts)
     .background(Color(uiColor: .systemGray5).ignoresSafeArea())
   }
-  
+
   func isLiked() -> Bool {
     return sharedDataViewModel.likedProducts.contains(where: { $0.id == product.id })
   }
-  
+
   func isAddedToCart() -> Bool {
     return sharedDataViewModel.cartProducts.contains(where: { $0.id == product.id })
   }
-  
+
   func addToLiked() {
     if let index = sharedDataViewModel
       .likedProducts
@@ -155,7 +154,7 @@ struct ProductDetailView: View {
       sharedDataViewModel.likedProducts.append(product)
     }
   }
-  
+
   func addToCart() {
     if let index = sharedDataViewModel
       .cartProducts

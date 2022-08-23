@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginPageView: View {
   @StateObject var loginViewModel: LoginPageViewModel = LoginPageViewModel()
-  
+
   var body: some View {
     VStack {
       Text("Welcome\nback")
@@ -19,7 +19,7 @@ struct LoginPageView: View {
         .frame(height: screenRect.height / 3.5)
         .padding()
         .background(
-        
+
           ZStack {
             LinearGradient(
               colors: [
@@ -36,14 +36,14 @@ struct LoginPageView: View {
             .padding(.trailing)
             .offset(y: -25)
             .ignoresSafeArea()
-            
+
             Circle()
               .strokeBorder(Color.white.opacity(0.3), lineWidth: 3)
               .frame(width: 23, height: 23)
               .blur(radius: 2)
               .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
               .padding(30)
-            
+
             Circle()
               .strokeBorder(Color.white.opacity(0.3), lineWidth: 3)
               .frame(width: 23, height: 23)
@@ -52,13 +52,13 @@ struct LoginPageView: View {
               .padding(.leading, 30)
           }
         )
-      
+
       ScrollView(.vertical, showsIndicators: false) {
         VStack(spacing: 15) {
           Text(loginViewModel.registerUser ? "Register" : "Login")
             .font(.system(size: 22).bold())
             .frame(maxWidth: .infinity, alignment: .leading)
-          
+
           customTextField(
             icon: "envelope",
             title: "Email",
@@ -67,7 +67,7 @@ struct LoginPageView: View {
             showPassword: $loginViewModel.showPassword
           )
           .padding(.top, 30)
-          
+
           customTextField(
             icon: "lock",
             title: "Password",
@@ -76,7 +76,7 @@ struct LoginPageView: View {
             showPassword: $loginViewModel.showPassword
           )
           .padding(.top, 10)
-          
+
           if loginViewModel.registerUser {
             customTextField(
               icon: "lock",
@@ -87,7 +87,7 @@ struct LoginPageView: View {
             )
             .padding(.top, 10)
           }
-          
+
           Button(action: { loginViewModel.forgotPassword() }) {
             Text("Forgot Password?")
               .font(.system(size: 14))
@@ -96,7 +96,7 @@ struct LoginPageView: View {
           }
           .padding(.top, 8)
           .frame(maxWidth: .infinity, alignment: .leading)
-          
+
           Button(action: {
             if loginViewModel.registerUser {
               loginViewModel.register()
@@ -116,7 +116,7 @@ struct LoginPageView: View {
           }
            .padding(.top, 25)
            .padding(.horizontal)
-          
+
           Button(action: {
             withAnimation {
               loginViewModel.registerUser.toggle()
@@ -130,7 +130,6 @@ struct LoginPageView: View {
           .padding(.top, 8)
         }
         .padding(30)
-        
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)
       .background(Color.white)
@@ -167,7 +166,7 @@ struct LoginPageView: View {
         }
       )
       .foregroundColor(Color.black.opacity(0.8))
-      
+
       if title.contains("Password") && !showPassword.wrappedValue {
         SecureField(hint, text: value)
           .padding(.top, 2)
@@ -175,7 +174,7 @@ struct LoginPageView: View {
         TextField(hint, text: value)
           .padding(.top, 2)
       }
-      
+
       Divider()
         .background(Color.black.opacity(0.4))
     }
@@ -188,7 +187,6 @@ struct LoginPageView: View {
             Text(showPassword.wrappedValue ? "Hide" : "Show")
               .font(.system(size: 13).bold())
               .foregroundColor(Color(uiColor: .systemIndigo))
-            
           }
         }
       }
